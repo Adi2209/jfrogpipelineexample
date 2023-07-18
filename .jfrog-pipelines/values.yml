@@ -1,0 +1,3 @@
+myRepo: 
+  gitProvider: int_github
+  path: adi2209/jfrog-pipelines-simple-example
