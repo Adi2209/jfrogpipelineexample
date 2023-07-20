@@ -3,8 +3,8 @@ valuesFilePath: ./values.yml
 
 resources:
   - name: myFirstRepo
-    type: GitRepo
-    configuration:
+    type: GitRepo # defines the resource type
+    configuration: # defines the resource definition
       gitProvider: {{ .Values.myRepo.gitProvider }}
       path: {{ .Values.myRepo.path }}
   - name: propertyBag
@@ -16,7 +16,7 @@ resources:
 
 pipelines:
   - name: pipeline_trigger_1_adityan
-    steps:
+    steps: #step definiton
       - name: step_1
         type: Bash
         configuration:
