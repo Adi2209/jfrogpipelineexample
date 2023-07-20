@@ -1,3 +1,3 @@
 myRepo: 
-  gitProvider: int_github
+  gitProvider: myIntegration1
   path: adi2209/jfrogpipelineexample
