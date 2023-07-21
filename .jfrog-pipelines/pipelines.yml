@@ -25,6 +25,22 @@ pipelines:
         execution:
           onExecute:
             - printenv
+      - name: step_1.1
+        type: Bash
+        configuration: 
+          inputResources: 
+            - name: myFirstRepo
+        execution:
+          onExecute:
+            -echo "step_1.1"
+      - name: step_1.2
+        type: Bash
+        configuration: 
+          inputResources: 
+            - name: myFirstRepo
+        execution:
+          onExecute:
+            -echo "step_1.2"
   - name: pipeline_trigger_2_adityan
     steps:
       - name: step_2
