@@ -34,7 +34,7 @@ pipelines:
             - name: step_1
         execution:
           onExecute:
-            -echo "Executed step_1_1"
+            - echo "Executed step_1_1"
       - name: step_1_2
         type: Bash
         configuration: 
@@ -42,7 +42,7 @@ pipelines:
             - name: myFirstRepo
         execution:
           onExecute:
-            -echo "Executed step_1_2"
+            - echo "Executed step_1_2"
       - name: step_1_3
         type: Bash
         configuration: 
@@ -50,5 +50,5 @@ pipelines:
             - name: myFirstRepo
         execution:
           onExecute:
-            -echo "Executed step_1_3"
+            - echo "Executed step_1_3"
       
