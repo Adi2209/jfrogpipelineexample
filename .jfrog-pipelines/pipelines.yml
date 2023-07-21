@@ -42,7 +42,7 @@ pipelines:
         type: Bash
         configuration:
           # affinityGroup: ag1
-          inputResources: 
+          inputSteps: 
             - name: step_1
         execution:
           onExecute:
@@ -50,7 +50,7 @@ pipelines:
       - name: step_3
         type: Bash
         configuration: 
-          inputResources: 
+          inputSteps: 
             - name: step_2
         execution:
           onExecute:
@@ -58,7 +58,7 @@ pipelines:
       - name: step_4
         type: Bash
         configuration: 
-          inputResources: 
+          inputSteps: 
             - name: step_3
         execution:
           onExecute:
