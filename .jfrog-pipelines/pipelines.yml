@@ -13,6 +13,10 @@ resources:
       foo: bar
       foo1: bar1
       foo2: bar2
+  - name: step_1
+    type: PropertyBag
+    configuration:
+      key: value
 
 pipelines:
   - name: pipeline_trigger_1_adityan
