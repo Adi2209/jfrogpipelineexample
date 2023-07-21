@@ -20,6 +20,7 @@ pipelines:
       - name: step_1
         type: Bash
         configuration:
+          affinityGroup: ag1
           inputResources:
             - name: myFirstRepo
         execution:
@@ -27,7 +28,8 @@ pipelines:
             - printenv
       - name: step_1.1
         type: Bash
-        configuration: 
+        configuration:
+          affinityGroup: ag1
           inputResources: 
             - name: myFirstRepo
         execution:
@@ -41,13 +43,12 @@ pipelines:
         execution:
           onExecute:
             -echo "step_1.2"
-  - name: pipeline_trigger_2_adityan
-    steps:
-      - name: step_2
+      - name: step_1.3
         type: Bash
-        configuration:
-          inputResources:
+        configuration: 
+          inputResources: 
             - name: myFirstRepo
         execution:
           onExecute:
-            - printenv
+            -echo "step_1.3"
+      =
