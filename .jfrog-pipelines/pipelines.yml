@@ -20,7 +20,7 @@ pipelines:
       - name: step_1
         type: Bash
         configuration:
-          affinityGroup: ag1
+          # affinityGroup: ag1
           inputResources:
             - name: myFirstRepo
         execution:
@@ -29,7 +29,7 @@ pipelines:
       - name: step_1_1
         type: Bash
         configuration:
-          affinityGroup: ag1
+          # affinityGroup: ag1
           inputResources: 
             - name: step_1
         execution:
