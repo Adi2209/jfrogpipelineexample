@@ -62,5 +62,21 @@ pipelines:
             - name: step_3
         execution:
           onExecute:
-            - echo "Executed step_1_3"
+            - echo "Executed step_1_4"
+      - name: step_5
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_3
+        execution:
+          onExecute:
+            - echo "Executed step_1_5"
+      - name: step_6
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_5
+        execution:
+          onExecute:
+            - echo "Executed step_1_6"
       
