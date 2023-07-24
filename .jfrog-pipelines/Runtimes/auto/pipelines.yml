@@ -42,9 +42,9 @@ pipelines:
         image: 
           auto:
             language: node
-            version: "16"
+            version: "14"
             versions:
-                      - "16"
+                      - "14"
     steps: #step_r definiton
       - name: step_r_1
         type: Bash
