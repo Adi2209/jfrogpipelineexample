@@ -89,11 +89,11 @@ pipelines:
             - echo "Timed Out"
       - name: step_r_h_5
         type: Bash
-        configuration: 
+        configuration:
           runtime: 
             type: image
             image: 
-              auto: 
+              auto:
                 language: node
                 version: "14"
                 versions:
