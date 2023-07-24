@@ -40,11 +40,11 @@ pipelines:
       runtime: 
         type: image
         image: 
-          auto:
-            language: node
-            version: "14"
-            versions:
-                      - "14"
+          custom:
+          name: jfpip.jfrog.io/jfrog/pipelines-tools
+          tag: latest
+          registry: bsEntPlus
+          sourceRepository: dev-releases-docker-local
     steps: #step_r_c definiton
       - name: step_r_c_1
         type: Bash
