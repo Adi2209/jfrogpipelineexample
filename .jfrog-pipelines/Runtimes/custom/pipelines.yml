@@ -55,7 +55,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - node -v
+            - echo "step executed"
       - name: step_r_c_2
         type: Bash
         configuration:
@@ -65,7 +65,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executed step_r_c_1_1"
-            - node -v
+            - echo "step executed"
       - name: step_r_c_3
         type: Bash
         configuration: 
@@ -74,7 +74,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executed step_r_c_1_2"
-            - node -v
+            - echo "step executed"
       - name: step_r_c_4
         type: Bash
         configuration: 
@@ -85,7 +85,7 @@ pipelines:
         execution:
           onExecute:
             - sleep 3
-            - node -v
+            - echo "step executed"
           onFailure:
             - echo "Timed Out"
       - name: step_r_c_5
@@ -97,7 +97,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executed step_r_c_1_5"
-            - node -v
+            - echo "step executed"
       - name: step_r_c_6
         type: Bash
         configuration: 
@@ -120,7 +120,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executed step_r_c_1_7"
-            - node -v
+            - echo "step executed"
           onSuccess:
             - echo "Executed Successfully"
 
