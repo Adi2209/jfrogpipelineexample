@@ -105,7 +105,6 @@ pipelines:
           onExecute:
             - echo "Executed step_r_h_1_5"
             - node -v
-            - echo "step executed"
       - name: step_r_h_6
         type: Bash
         configuration: 
