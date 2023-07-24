@@ -2,7 +2,7 @@ template: true
 valuesFilePath: ./values.yml
 
 resources:
-  - name: myFirstRepo
+  - name: mySecondRepo
     type: GitRepo # defines the resource type
     configuration: # defines the resource definition
       gitProvider: {{ .Values.myRepo.gitProvider }}
@@ -43,13 +43,15 @@ pipelines:
           auto:
             language: node
             version: "16"
+            versions:
+                      - "16"
     steps: #step_r definiton
       - name: step_r_1
         type: Bash
         configuration:
           affinityGroup: ag1
           inputResources:
-            - name: myFirstRepo
+            - name: mySecondRepo
         execution:
           onExecute:
             - printenv
@@ -105,7 +107,7 @@ pipelines:
         type: Bash
         configuration: 
           inputResources:
-            - name: myFirstRepo
+            - name: mySecondRepo
           inputSteps: 
             - name: step_r_3
             - name: step_r_5
