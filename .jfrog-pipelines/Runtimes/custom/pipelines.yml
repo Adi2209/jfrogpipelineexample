@@ -43,7 +43,7 @@ pipelines:
           custom:
             name: jfpip.jfrog.io/jfrog/pipelines-tools
             tag: latest
-            registry: bsEntPlus
+            registry: myIntegration1
             sourceRepository: dev-releases-docker-local
     steps: #step_r_c definiton
       - name: step_r_c_1
