@@ -66,12 +66,15 @@ pipelines:
       - name: step_4
         type: Bash
         configuration: 
+          timeoutSeconds: 60
           priority: 2
           inputSteps: 
             - name: step_2
         execution:
           onExecute:
             - echo "Executed step_1_4"
+          onFailure:
+            - echo "Step Timed Out"
       - name: step_5
         type: Bash
         configuration: 
@@ -91,4 +94,18 @@ pipelines:
         execution:
           onExecute:
             - echo "Executed step_1_6"
+      - name: step_7
+        type: Bash
+        configuration: 
+          inputResources:
+            - name: myFirstRepo
+          inputSteps: 
+            - name: step_3
+            - name: step_5
+        execution:
+          onExecute:
+            - echo "Executed step_1_7"
+          onSuccess:
+            - echo "Executed Successfully"
+
       
