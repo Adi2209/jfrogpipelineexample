@@ -1,0 +1,129 @@
+template: true 
+valuesFilePath: ./values.yml
+
+resources:
+  - name: myEnvRepo
+    type: GitRepo # defines the resource type
+    configuration: # defines the resource definition
+      gitProvider: {{ .Values.myRepo.gitProvider }}
+      path: {{ .Values.myRepo.path }}
+  - name: propertyBag_env
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
+  - name: step_env_1
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_env_2
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_env_3
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_env_4
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_env_5
+    type: PropertyBag
+    configuration:
+      key: value
+
+pipelines:
+  - name: pipeline_env_adityan
+    configuration: 
+      environmentVariables:
+        readOnly:
+          env1: pipeline_val1
+          env2:
+            default: pipeline_val2
+            description: This is the description of env2
+            values:
+            - pipeline_val2
+            - pipeline_val3
+            - pipeline_val4
+    steps: #step_env definiton
+      - name: step_env_1
+        type: Bash
+        configuration:
+          affinityGroup: ag1
+          inputResources:
+            - name: myEnvRepo
+        execution:
+          onExecute:
+            - printenv
+            - node -v
+      - name: step_env_2
+        type: Bash
+        configuration:
+          affinityGroup: ag1
+          inputSteps: 
+            - name: step_env_1
+        execution:
+          onExecute:
+            - echo "Executed step_env_1_1"
+            - node -v
+      - name: step_env_3
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_env_2
+        execution:
+          onExecute:
+            - echo "Executed step_env_1_2"
+            - node -v
+      - name: step_env_4
+        type: Bash
+        configuration: 
+          timeoutSeconds: 1
+          priority: 2
+          inputSteps: 
+            - name: step_env_2
+        execution:
+          onExecute:
+            - sleep 3
+            - node -v
+          onFailure:
+            - echo "Timed Out"
+      - name: step_env_5
+        type: Bash
+        configuration: 
+          priority: 1
+          inputSteps: 
+            - name: step_env_2
+        execution:
+          onExecute:
+            - echo "Executed step_env_1_5"
+            - node -v
+      - name: step_env_6
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_env_3
+            - name: step_env_5
+            - name: step_env_4
+        execution:
+          onExecute:
+            - echo "Executed step_env_1_6"
+      - name: step_env_7
+        type: Bash
+        configuration: 
+          inputResources:
+            - name: myEnvRepo
+          inputSteps: 
+            - name: step_env_3
+            - name: step_env_5
+            - name: step_env_6
+        execution:
+          onExecute:
+            - echo "Executed step_env_1_7"
+            - node -v
+          onSuccess:
+            - echo "Executed Successfully"
+
+      
