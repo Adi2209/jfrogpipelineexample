@@ -72,7 +72,7 @@ pipelines:
             - name: step_2
         execution:
           onExecute:
-            - echo "Executed step_1_4"
+            - sleep 3
           onFailure:
             - echo "Timed Out"
       - name: step_5
