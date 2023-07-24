@@ -97,7 +97,7 @@ pipelines:
                 language: node
                 version: "14"
                 versions:
-                          -"14"
+                          - "14"
           priority: 1
           inputSteps: 
             - name: step_r_h_2
