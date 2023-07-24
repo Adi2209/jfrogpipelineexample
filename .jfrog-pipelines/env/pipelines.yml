@@ -13,59 +13,29 @@ resources:
       foo: bar
       foo1: bar1
       foo2: bar2
-  - name: step_env_1
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_env_2
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_env_3
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_env_4
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_env_5
-    type: PropertyBag
-    configuration:
-      key: value
 
-
+  
 pipelines:
   - name: adityan_env_pipeline
     configuration:
       environmentVariables:
         readOnly:
           env1: pipe_value1
-          env2:
-            default: pipe_value2
-            description: This is env2 description
-            values:
-              - pipe_value2
-              - pipe_value3
-              - pipe_value4
+          env2: pipe_value2
+          env3: pipe_value3
     steps:
-      - name: my_step
+      - name: environment_variable_step1
         type: Bash
         configuration:
           environmentVariables:
-            step_env1:
-              default: step_value1
-              description: This is step_env1 description
-              values:
-                - step_value1
-                - step_value2
-                - step_value3
-              allowCustom: true
-            step_env2: step_value5
-            step_env3:
-              allowCustom: true
-              secure: true
-              default: "someValue"
+            key1: val1
+            key2: val2
+            key3: val3
         execution:
           onExecute:
-            - echo "test"
+            - echo $env1
+            - echo $env2
+            - echo $env3
+            - echo $key1
+            - echo $key2
+            - echo $key3
