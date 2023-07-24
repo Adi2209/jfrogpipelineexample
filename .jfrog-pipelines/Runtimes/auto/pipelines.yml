@@ -7,7 +7,7 @@ resources:
     configuration: # defines the resource definition
       gitProvider: {{ .Values.myRepo.gitProvider }}
       path: {{ .Values.myRepo.path }}
-  - name: propertyBag
+  - name: propertyBag_runtime
     type: PropertyBag
     configuration:
       foo: bar
