@@ -58,16 +58,18 @@ pipelines:
       - name: step_4
         type: Bash
         configuration: 
+          priority: 2
           inputSteps: 
-            - name: step_3
+            - name: step_2
         execution:
           onExecute:
             - echo "Executed step_1_4"
       - name: step_5
         type: Bash
         configuration: 
+          priority: 1
           inputSteps: 
-            - name: step_3
+            - name: step_2
         execution:
           onExecute:
             - echo "Executed step_1_5"
@@ -75,6 +77,7 @@ pipelines:
         type: Bash
         configuration: 
           inputSteps: 
+            - name: step_3
             - name: step_5
             - name: step_4
         execution:
