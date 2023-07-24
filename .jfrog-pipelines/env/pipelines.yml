@@ -34,96 +34,38 @@ resources:
     configuration:
       key: value
 
+
 pipelines:
-  - name: pipeline_env_adityan
-    configuration: 
+  - name: adityan_env_pipeline
+    configuration:
       environmentVariables:
         readOnly:
-          env1: pipeline_val1
+          env1: pipe_value1
           env2:
-            default: pipeline_val2
-            description: This is the description of env2
+            default: pipe_value2
+            description: This is env2 description
             values:
-            - pipeline_val2
-            - pipeline_val3
-            - pipeline_val4
-    steps: #step_env definiton
-      - name: step_env_1
+              - pipe_value2
+              - pipe_value3
+              - pipe_value4
+    steps:
+      - name: my_step
         type: Bash
         configuration:
-          affinityGroup: ag1
-          inputResources:
-            - name: myEnvRepo
+          environmentVariables:
+            step_env1:
+              default: step_value1
+              description: This is step_env1 description
+              values:
+                - step_value1
+                - step_value2
+                - step_value3
+              allowCustom: true
+            step_env2: step_value5
+            step_env3:
+              allowCustom: true
+              secure: true
+              default: "someValue"
         execution:
           onExecute:
-            - printenv
-            - node -v
-      - name: step_env_2
-        type: Bash
-        configuration:
-          affinityGroup: ag1
-          inputSteps: 
-            - name: step_env_1
-        execution:
-          onExecute:
-            - echo "Executed step_env_1_1"
-            - node -v
-      - name: step_env_3
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_env_2
-        execution:
-          onExecute:
-            - echo "Executed step_env_1_2"
-            - node -v
-      - name: step_env_4
-        type: Bash
-        configuration: 
-          timeoutSeconds: 1
-          priority: 2
-          inputSteps: 
-            - name: step_env_2
-        execution:
-          onExecute:
-            - sleep 3
-            - node -v
-          onFailure:
-            - echo "Timed Out"
-      - name: step_env_5
-        type: Bash
-        configuration: 
-          priority: 1
-          inputSteps: 
-            - name: step_env_2
-        execution:
-          onExecute:
-            - echo "Executed step_env_1_5"
-            - node -v
-      - name: step_env_6
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_env_3
-            - name: step_env_5
-            - name: step_env_4
-        execution:
-          onExecute:
-            - echo "Executed step_env_1_6"
-      - name: step_env_7
-        type: Bash
-        configuration: 
-          inputResources:
-            - name: myEnvRepo
-          inputSteps: 
-            - name: step_env_3
-            - name: step_env_5
-            - name: step_env_6
-        execution:
-          onExecute:
-            - echo "Executed step_env_1_7"
-            - node -v
-          onSuccess:
-            - echo "Executed Successfully"
-
-      
+            - echo "test"
