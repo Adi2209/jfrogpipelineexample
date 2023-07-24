@@ -25,6 +25,14 @@ resources:
     type: PropertyBag
     configuration:
       key: value
+  - name: step_4
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_5
+    type: PropertyBag
+    configuration:
+      key: value
 
 pipelines:
   - name: pipeline_trigger_1_adityan
