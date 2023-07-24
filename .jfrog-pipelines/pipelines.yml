@@ -76,6 +76,7 @@ pipelines:
         configuration: 
           inputSteps: 
             - name: step_5
+            - name: step_4
         execution:
           onExecute:
             - echo "Executed step_1_6"
