@@ -66,7 +66,7 @@ pipelines:
       - name: step_4
         type: Bash
         configuration: 
-          timeoutSeconds: 60
+          timeoutSeconds: 10
           priority: 2
           inputSteps: 
             - name: step_2
@@ -74,7 +74,7 @@ pipelines:
           onExecute:
             - echo "Executed step_1_4"
           onFailure:
-            - echo "Step Timed Out"
+            - echo "Timed Out"
       - name: step_5
         type: Bash
         configuration: 
