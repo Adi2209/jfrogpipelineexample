@@ -7,7 +7,6 @@ resources:
     configuration: # defines the resource definition
       gitProvider: {{ .Values.myRepo.gitProvider }}
       path: {{ .Values.myRepo.path }}
-      autoPull: false
   - name: propertyBag_runtime_h
     type: PropertyBag
     configuration:
