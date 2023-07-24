@@ -95,7 +95,8 @@ pipelines:
             image: 
               auto:
                 language: node
-                version: "15"
+                versions:
+                          -"14"
           priority: 1
           inputSteps: 
             - name: step_r_h_2
