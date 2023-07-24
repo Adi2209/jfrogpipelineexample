@@ -1,0 +1,114 @@
+template: true 
+valuesFilePath: ./values.yml
+
+resources:
+  - name: agRepo
+    type: GitRepo # defines the resource type
+    configuration: # defines the resource definition
+      gitProvider: {{ .Values.myRepo.gitProvider }}
+      path: {{ .Values.myRepo.path }}
+  - name: propertyBag_ag
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
+  - name: step_ag1
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_ag2
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_ag3
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_ag4
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_ag5
+    type: PropertyBag
+    configuration:
+      key: value
+
+pipelines:
+  - name: pipeline_trigger_1_adityan
+    steps: #step definiton
+      - name: step_ag1
+        type: Bash
+        configuration:
+          affinityGroup: ag1
+          inputResources:
+            - name: agRepo
+        execution:
+          onExecute:
+            - printenv
+      - name: step_ag2
+        type: Bash
+        configuration:
+          affinityGroup: ag1
+          inputSteps: 
+            - name: step_ag1
+        execution:
+          onExecute:
+            - echo "Executed step_ag1_1"
+      - name: step_ag3
+        type: Bash
+        configuration: 
+          affinityGroup: ag1
+          inputSteps: 
+            - name: step_ag2
+        execution:
+          onExecute:
+            - echo "Executed step_ag1_2"
+      - name: step_ag4
+        type: Bash
+        configuration: 
+          affinityGroup: ag1
+          priority: 2
+          inputSteps: 
+            - name: step_ag2
+        execution:
+          onExecute:
+            - sleep 3
+          onFailure:
+            - echo "Timed Out"
+      - name: step_ag5
+        type: Bash
+        configuration: 
+          affinityGroup: ag1
+          priority: 1
+          inputSteps: 
+            - name: step_ag2
+        execution:
+          onExecute:
+            - echo "Executed step_ag1_5"
+      - name: step_ag6
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_ag3
+            - name: step_ag5
+            - name: step_ag4
+        execution:
+          onExecute:
+            - echo "Executed step_ag1_6"
+      - name: step_ag7
+        type: Bash
+        configuration: 
+          inputResources:
+            - name: agRepo
+          inputSteps: 
+            - name: step_ag3
+            - name: step_ag5
+            - name: step_ag6
+        execution:
+          onExecute:
+            - echo "Executed step_ag1_7"
+          onSuccess:
+            - echo "Executed Successfully"
+
+      
