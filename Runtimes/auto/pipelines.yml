@@ -1,0 +1,119 @@
+template: true 
+valuesFilePath: ./values.yml
+
+resources:
+  - name: myFirstRepo
+    type: GitRepo # defines the resource type
+    configuration: # defines the resource definition
+      gitProvider: {{ .Values.myRepo.gitProvider }}
+      path: {{ .Values.myRepo.path }}
+  - name: propertyBag
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
+  - name: step_1
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_2
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_3
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_4
+    type: PropertyBag
+    configuration:
+      key: value
+  - name: step_5
+    type: PropertyBag
+    configuration:
+      key: value
+
+pipelines:
+  - name: pipeline_trigger_1_adityan
+    configuration:
+      runtime: 
+        type: image
+        image: 
+          auto:
+            language: node
+            version: "16"
+    steps: #step definiton
+      - name: step_1
+        type: Bash
+        configuration:
+          affinityGroup: ag1
+          inputResources:
+            - name: myFirstRepo
+        execution:
+          onExecute:
+            - printenv
+      - name: step_2
+        type: Bash
+        configuration:
+          affinityGroup: ag1
+          inputSteps: 
+            - name: step_1
+        execution:
+          onExecute:
+            - echo "Executed step_1_1"
+      - name: step_3
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_2
+        execution:
+          onExecute:
+            - echo "Executed step_1_2"
+      - name: step_4
+        type: Bash
+        configuration: 
+          timeoutSeconds: 1
+          priority: 2
+          inputSteps: 
+            - name: step_2
+        execution:
+          onExecute:
+            - sleep 3
+          onFailure:
+            - echo "Timed Out"
+      - name: step_5
+        type: Bash
+        configuration: 
+          priority: 1
+          inputSteps: 
+            - name: step_2
+        execution:
+          onExecute:
+            - echo "Executed step_1_5"
+      - name: step_6
+        type: Bash
+        configuration: 
+          inputSteps: 
+            - name: step_3
+            - name: step_5
+            - name: step_4
+        execution:
+          onExecute:
+            - echo "Executed step_1_6"
+      - name: step_7
+        type: Bash
+        configuration: 
+          inputResources:
+            - name: myFirstRepo
+          inputSteps: 
+            - name: step_3
+            - name: step_5
+            - name: step_6
+        execution:
+          onExecute:
+            - echo "Executed step_1_7"
+          onSuccess:
+            - echo "Executed Successfully"
+
+      
