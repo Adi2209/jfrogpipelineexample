@@ -1,12 +1,4 @@
-template: true 
-valuesFilePath: ./values.yml
-
 resources:
-  - name: mySecondRepo
-    type: GitRepo # defines the resource type
-    configuration: # defines the resource definition
-      gitProvider: {{ .Values.myRepo.gitProvider }}
-      path: {{ .Values.myRepo.path }}
   - name: propertyBag_runtime
     type: PropertyBag
     configuration:
@@ -50,8 +42,6 @@ pipelines:
         type: Bash
         configuration:
           affinityGroup: ag1
-          inputResources:
-            - name: mySecondRepo
         execution:
           onExecute:
             - printenv
