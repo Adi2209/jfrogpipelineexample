@@ -97,8 +97,7 @@ pipelines:
             - echo "Executed step_ag1_6"
       - name: step_ag7
         type: Bash
-        configuration: 
-          affinityGroup: ag1
+        configuration:
           inputResources:
             - name: agRepo
           inputSteps: 
