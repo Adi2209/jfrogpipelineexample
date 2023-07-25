@@ -79,7 +79,7 @@ pipelines:
       - name: step_ag5
         type: Bash
         configuration: 
-          affinityGroup: ag1
+          affinityGroup: ag2
           priority: 1
           inputSteps: 
             - name: step_ag2
