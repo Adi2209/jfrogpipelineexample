@@ -67,7 +67,7 @@ pipelines:
       - name: step_ag4
         type: Bash
         configuration: 
-          affinityGroup: ag1
+          affinityGroup: ag2
           priority: 2
           inputSteps: 
             - name: step_ag2
@@ -89,6 +89,7 @@ pipelines:
       - name: step_ag6
         type: Bash
         configuration: 
+          affinityGroup: ag2
           inputSteps: 
             - name: step_ag3
             - name: step_ag5
@@ -99,6 +100,7 @@ pipelines:
       - name: step_ag7
         type: Bash
         configuration: 
+          affinityGroup: ag1
           inputResources:
             - name: agRepo
           inputSteps: 
