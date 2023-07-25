@@ -84,7 +84,7 @@ pipelines:
             - name: step_r_c_2
         execution:
           onExecute:
-            - sleep 3
+            - sleep 61
             - echo "step executed"
           onFailure:
             - echo "Timed Out"
